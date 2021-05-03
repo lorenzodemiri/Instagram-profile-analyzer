@@ -1,6 +1,7 @@
 # Instagram-profile-analyzer
 A tool that gave you the ability to download and analyze the data for any instagram profile and perform some sentiment analysis on the comments.
 
+![IG PROFILE](image_streamlit/instagram-analytics-insights.png)
 
 ### Dependencies
 
@@ -27,7 +28,7 @@ streamlit run stream_app.py
 
 Contributors names and contact info
   
-ex. [@lorenzodemiri](https://github.com/lorenzodemiri)
+[@lorenzodemiri](https://github.com/lorenzodemiri)
 
 ## Version History
 
