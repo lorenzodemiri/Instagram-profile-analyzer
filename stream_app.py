@@ -88,16 +88,18 @@ def scrape_post_comments(scraper, profile):
             pos_neg_count = post['comments']['sentiment_analysis'].value_counts(
             )
             print(type(pos_neg_count))
-            st.markdown("""
-            <p><h3>Positie comments</h3><h3 style="color:green;">{}</h3></p>
-            <p><h3>Negative comments</h3><h3 style="color:red;">{}</h3></p>
-            <p><h3>Engagemente rate</h3><h3 style="color:{};">{}%</h3></p>
-            """.format(
-                pos_neg_count["POSITIVE"] if 'POSITIVE' in pos_neg_count else 0,
-                pos_neg_count["NEGATIVE"] if 'NEGATIVE' in pos_neg_count else 0,
+            col1, col2, col3 = st.beta_columns(3)
+            col1.markdown("""
+            <p><h3>Positie comments</h3><h3 style="color:green;">{}</h3></p>""".format(
+                pos_neg_count["POSITIVE"] if 'POSITIVE' in pos_neg_count else 0), unsafe_allow_html=True)
+            col2.markdown("""
+            <p><h3>Negative comments</h3><h3 style="color:red;">{}</h3></p>""".format(
+                pos_neg_count["NEGATIVE"] if 'NEGATIVE' in pos_neg_count else 0), unsafe_allow_html=True)
+            col3.markdown("""
+            <p><h3>Engagemente rate</h3><h3 style="color:{};">{}%</h3></p>""".format(
                 'red' if round(eng_rate, 2) < 3 else 'green',
-                round(eng_rate, 2)
-            ), unsafe_allow_html=True)
+                round(eng_rate, 2)), unsafe_allow_html=True)
+
 
     df_temp = pd.DataFrame(data_to_df)
     df_temp.set_index('date_of_post')
@@ -133,7 +135,7 @@ username_scrape = st.sidebar.text_input(
 text = st.sidebar.markdown("Please be aware to set a reasonable value for comments and posts, cause IG might stop us if we try to download a large amout of data.")
 
 number = st.sidebar.empty()
-number_post = number.number_input("How many post do you want to download ?", min_value = 2, max_value = 10)
+number_post = number.number_input("How many post do you want to download ?", min_value = 2, max_value = 50)
 
 number_comment = st.sidebar.empty()
 number_comment_post = number_comment.number_input(
